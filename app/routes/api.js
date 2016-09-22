@@ -10,7 +10,7 @@ var secretKey = config.secretKey;
 
 function createToken(user){
 	var token = jsonwebtoken.sign({
-		_id: user._id,
+		id: user._id,
 		name: user.name,
 		username: user.username
 	}, secretKey, {
@@ -70,6 +70,7 @@ module.exports = function(app, express, io){
 		User.find({}, function(err, users){
 			if(err){
 				res.send(err);
+				return;
 			}
 			res.json(users);
 		});
@@ -159,14 +160,15 @@ module.exports = function(app, express, io){
 					res.send(err);
 					return;
 				}
-				res.json(stories);
+
+				res.send(stories);
 			});
 
 		});
 
-	api.get('/me', function(req, res){
-		res.json(req.decoded);
-	})
+	api.get('/me', function(req, res) {
+		res.send(req.decoded);
+	});
 
 	return api;
 

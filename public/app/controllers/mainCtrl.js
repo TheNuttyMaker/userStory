@@ -26,28 +26,27 @@ angular.module('mainCtrl', [])
 		vm.error = '';
 
 		Auth.login(vm.loginData.username, vm.loginData.password)
-			.success(function(data){
+			.success(function(data) {
 				vm.processing = false;
 
 				Auth.getUser()
-					.then(function(data){
+					.then(function(data) {
 						console.log("controller ke getUser ke andar");
 						vm.user = data.data;
 					});
-				if(data.success){
+				if (data.success) {
 					console.log("controller ke success ke andar");
 					$location.path('/');
-				}
-				else{
+				} else {
 					console.log("controller ke else ke andar");
 					vm.error = data.message;
 				}
-				
+
 			});
-			console.log("controller end");
+		console.log("controller end");
 	}
 
-	vm.doLogout = function(){
+	vm.doLogout = function() {
 		Auth.logout();
 		$location.path('/logout');
 

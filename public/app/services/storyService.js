@@ -8,7 +8,7 @@ angular.module('storyService', [])
 		return $http.get('/api/all_stories');
 	}
 
-	storyFactory.all = function(){
+	storyFactory.allStory = function(){
 		return $http.get('/api/');
 	}
 

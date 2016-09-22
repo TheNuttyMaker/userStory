@@ -4,7 +4,7 @@ angular.module('storyCtrl', ['storyService'])
 .controller('StoryController', function(Story, socketio){
 
 	var vm = this;
-	Story.all()
+	Story.allStory()
 		.success(function(data){
 			vm.stories = data;
 		});
